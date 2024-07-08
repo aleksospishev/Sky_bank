@@ -15,3 +15,9 @@ def mask_account_card(input_string: str) -> str:
         return f"{' '.join(list_input[:-1])} {get_mask_account(list_input[-1])}"
     else:
         return "Введены некоректные данные"
+
+
+def get_date(date_input: str) -> str:
+    temp = date_input[0:10].split('-')
+    return f'{temp[2]}.{temp[1]}.{temp[0]}'
+
