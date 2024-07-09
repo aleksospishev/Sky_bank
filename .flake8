@@ -1,4 +1,4 @@
 [flake8]
 max-line-length = 119
-ignore = D100
+ignore = D100, D104
 exclude = .git, venv, .venv, .env, env, __pycache__
