@@ -1,7 +1,5 @@
 from .masks import get_mask_account, get_mask_card_number
 
-# import masks
-
 TYPE_CARDS = ["visa", "mastercard", "maestro"]
 
 
