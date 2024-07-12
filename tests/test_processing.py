@@ -4,7 +4,7 @@ from src.processing import filter_by_state, sort_by_date
 
 
 @pytest.fixture
-def data_test():
+def data_test() -> list:
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
@@ -13,7 +13,7 @@ def data_test():
     ]
 
 
-def test_filter_by_state(data_test):
+def test_filter_by_state(data_test: list) -> None:
     assert filter_by_state(data_test) == [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
@@ -26,7 +26,7 @@ def test_filter_by_state(data_test):
     assert filter_by_state([]) == []
 
 
-def test_sort_by_date(data_test):
+def test_sort_by_date(data_test: list) -> None:
     assert sort_by_date(data_test) == [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
