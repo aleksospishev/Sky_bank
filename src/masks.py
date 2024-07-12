@@ -24,5 +24,3 @@ def get_mask_account(account: int) -> str:
             return "Некорректные данные"
     else:
         return "Некорректные данные"
-
-
