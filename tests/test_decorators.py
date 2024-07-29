@@ -11,7 +11,7 @@ def function_int() -> int:
     return 5
 
 
-@log(file_name="log.txt")
+@log(file_name="test_1.txt")
 def function_file() -> str:
     return "Hello"
 
@@ -30,6 +30,8 @@ def test_log_decorator_int(capsys) -> None:
 
 def test_decorator_file() -> None:
     function_file()
-    with open("log.txt", "r") as file:
+    with open("test_1.txt", "r", encoding='utf-8') as file:
         result = file.read()
         assert result == "function_file ok \n"
+    with open("test_1.txt", "w") as file:
+        file.write('')

@@ -9,20 +9,26 @@ def log(file_name=None):
             try:
                 result = func(*args, **kwargs)
                 message = f"{func.__name__} ok \n"
-                if not file_name:
-                    print(message)
-                else:
-                    with open(file_name, "a") as file:
-                        file.write(message)
-                return result
+                # if not file_name:
+                #     print(message)
+                # else:
+                #     with open(file_name, "a") as file:
+                #         file.write(message)
+                # return result
             except Exception as error:
                 message = f"{func.__name__} error: {error}. Inputs: {args} {kwargs}\n "
-                if not file_name:
-                    print(message)
-                else:
-                    with open(file_name, "a") as file:
-                        file.write(message)
-
+                result = None
+                # if not file_name:
+                #     print(message)
+                # else:
+                #     with open(file_name, "a") as file:
+                #         file.write(message)
+            if not file_name:
+                print(message)
+            else:
+                with open(file_name, "a") as file:
+                    file.write(message)
+            return result
         return wrapper
 
     return decorator
