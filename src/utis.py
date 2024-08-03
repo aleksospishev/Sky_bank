@@ -16,6 +16,8 @@ def inlet_json_file(file_name):
 
 
 def amount_transaction_return(transaction: dict) -> float:
+    """"Принимает транзакцию и возвращает сумму покупки в формате Float если валюта транзакции отлична от RUB
+    происходит конвертация через api по средствам функции 'conversion_currency_amount'"""
     if transaction["operationAmount"]["currency"]["code"] == "RUB":
         return float(transaction["operationAmount"]["amount"])
     else:

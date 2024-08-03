@@ -29,7 +29,7 @@ def test_conversion_currency_amount_response_bad_request() -> None:
 
 @patch("requests.get")
 def test_conversion_currency_amount(mock_get) -> None:
-    """функция проверяет"""
+    """проверяет корректность работы функции обращения к api"""
     mock_get.return_value.json.return_value = {
         "success": True,
         "query": {"from": "EUR", "to": "RUB", "amount": 3.5},
