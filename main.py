@@ -1,11 +1,6 @@
-from src.decorators import log
-
-
-@log()
-def main(x, y):
-    res = x / y
+def main():
+    pass
 
 
 if __name__ == "__main__":
-    main(6
-         )
+    main()

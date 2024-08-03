@@ -30,8 +30,8 @@ def test_log_decorator_int(capsys) -> None:
 
 def test_decorator_file() -> None:
     function_file()
-    with open("test_1.txt", "r", encoding='utf-8') as file:
+    with open("test_1.txt", "r", encoding="utf-8") as file:
         result = file.read()
         assert result == "function_file ok \n"
     with open("test_1.txt", "w") as file:
-        file.write('')
+        file.write("")
