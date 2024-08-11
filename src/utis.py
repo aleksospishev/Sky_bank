@@ -11,7 +11,7 @@ utils_logger.addHandler(file_handler)
 utils_logger.setLevel(logging.DEBUG)
 
 
-def inlet_json_file(file_name):
+def inlet_json_file(file_name: str) -> list:
     """Функция принимает путь до файла и возвращает возвращает список словарей"""
     try:
         utils_logger.info(f"Считываем данные из файла {file_name} ")
@@ -27,7 +27,7 @@ def inlet_json_file(file_name):
     return data_json
 
 
-def amount_transaction_return(transaction: dict) -> float:
+def amount_transaction_return(transaction: dict):
     """ "Принимает транзакцию и возвращает сумму покупки в формате Float если валюта транзакции отлична от RUB
     происходит конвертация через api по средствам функции 'conversion_currency_amount'"""
     utils_logger.info(f'Обрабатываем транзакцию id {transaction["id"]}')
