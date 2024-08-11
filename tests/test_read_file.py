@@ -1,8 +1,3 @@
-import csv
-from unittest.mock import Mock, patch
-
-import pandas
-
 from src.read_file import csv_or_xls_read_file
 
 data_test = [
@@ -32,16 +27,20 @@ data_test = [
 
 
 def test_read_file_csv():
+    """Тест чтение из файла CSV."""
     assert csv_or_xls_read_file("./data_test/test.csv") == data_test
 
 
 def test_read_file_xls():
+    """Тест чтение из файла xls."""
     assert csv_or_xls_read_file("./data_test/test.xlsx") == data_test
 
 
 def test_read_file_not_csv():
+    """Тест чтение из файла Не CSV & XLS."""
     assert csv_or_xls_read_file("./data_test/test.json") == []
 
 
 def test_not_file():
+    """Тест чтение из несуществующего файла."""
     assert csv_or_xls_read_file("not_file.csv") == "файл не найден введите корректный путь"

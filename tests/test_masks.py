@@ -14,6 +14,7 @@ from src.masks import get_mask_account, get_mask_card_number
     ],
 )
 def test_get_mask_card_number(my_num: int, expected: str) -> None:
+    """Тест маски карты."""
     assert get_mask_card_number(my_num) == expected
 
 
@@ -28,4 +29,5 @@ def test_get_mask_card_number(my_num: int, expected: str) -> None:
     ],
 )
 def test_get_mask_account(my_num: int, expected: str) -> None:
+    """Тест маскирования аккаунта."""
     assert get_mask_account(my_num) == expected

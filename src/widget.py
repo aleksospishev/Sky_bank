@@ -13,15 +13,16 @@ def mask_account_card(input_string: str) -> str:
             message = f"{' '.join(list_input[:-1])} {get_mask_account(int(list_input[-1]))}"
         else:
             message = "Некорректные данные"
-        return message
     else:
-        return "Некорректные данные"
+        message = "Некорректные данные"
+    return message
 
 
 def get_date(date_input: str) -> str:
     """Принимает дату в формату 'YYYY-MM-DDTHH:MM:SS.ms' возвращает в формате 'DD.MM.YYYY'."""
     temp = date_input[0:10].split("-")
     if len(temp) < 3:
-        return "Некорректные данные"
+        message = "Некорректные данные"
     else:
-        return f"{temp[2]}.{temp[1]}.{temp[0]}"
+        message = f"{temp[2]}.{temp[1]}.{temp[0]}"
+    return message

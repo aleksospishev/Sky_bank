@@ -2,6 +2,7 @@ from src.generators import card_number_generator, filter_by_currency, transactio
 
 
 def test_filter_by_currency(data_transactions: list) -> None:
+    """Тест фильтра по валюте EUR ."""
     generator = filter_by_currency(data_transactions, "USD")
     assert next(generator) == {
         "id": 939719570,
@@ -47,6 +48,7 @@ def test_filter_by_currency(data_transactions: list) -> None:
 
 
 def test_transaction_descriptions(data_transactions: list) -> None:
+    """Тест на описание транзакции."""
     generator = transaction_descriptions(data_transactions)
     assert next(generator) == "Перевод организации"
     assert next(generator) == "Перевод со счета на счет"
@@ -57,6 +59,7 @@ def test_transaction_descriptions(data_transactions: list) -> None:
 
 
 def test_card_number_generator() -> None:
+    """Тест генератора карты."""
     generator = card_number_generator(start=1, end=4)
     assert next(generator) == "0000 0000 0000 0001"
     assert next(generator) == "0000 0000 0000 0002"
