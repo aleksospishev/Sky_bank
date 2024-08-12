@@ -1,7 +1,9 @@
-from src.read_file import csv_or_xls_read_file
-import pandas as pd
 from unittest.mock import patch
+
+import pandas as pd
 import pytest
+
+from src.read_file import csv_or_xls_read_file
 
 data_test = [
     {
@@ -41,16 +43,17 @@ def test_read_file_csv(mock_read, test_df):
     res = csv_or_xls_read_file("./data_test/test.csv")
     expected = test_df.to_dict(orient='records')
     assert res == expected
+    mock_read.assert_called_once_with("./data_test/test.csv", delimiter=";")
 
 
 @patch('src.read_file.pd.read_excel')
-def test_read_file_csv(mock_read, test_df):
+def test_read_file_xls(mock_read_xls, test_df):
     """Тест чтение из файла xls."""
-    mock_read.return_value = test_df
+    mock_read_xls.return_value = test_df
     res = csv_or_xls_read_file("./data_test/test.xlsx")
     expected = test_df.to_dict(orient='records')
     assert res == expected
-    mock_read.assert_called_once_with("./data_test/test.xlsx")
+    mock_read_xls.assert_called_once_with("./data_test/test.xlsx")
 
 
 def test_read_file_not_csv():
