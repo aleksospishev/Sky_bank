@@ -21,10 +21,11 @@ def get_mask_card_number(card_number: int) -> str:
                 mask_card_number += "*"
             if (i % 4) == 0 and i != len(number_card):
                 mask_card_number += " "
-        return mask_card_number
+        message = mask_card_number
     else:
         masks_logger.warning(f"{card_number} -некорректные данные")
-        return "Некорректные данные"
+        message = "Некорректные данные"
+    return message
 
 
 def get_mask_account(account: int) -> str:
@@ -32,10 +33,11 @@ def get_mask_account(account: int) -> str:
     if type(account) is int:
         if len(str(account)) > 6:
             masks_logger.info(f"трансформируем аккаунт {account}")
-            return "**" + str(account)[-4:]
+            message = "**" + str(account)[-4:]
         else:
             masks_logger.warning(f"{account} -некорректные данные")
-            return "Некорректные данные"
+            message = "Некорректные данные"
     else:
         masks_logger.warning(f"{account} -некорректные данные")
-        return "Некорректные данные"
+        message = "Некорректные данные"
+    return message

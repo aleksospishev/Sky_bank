@@ -1,10 +1,11 @@
-def log(file_name=None):
+def log(file_name: str = None) -> None:
     """Декоратор для логирования вызовов функции.
+
     Параметры:
     file_name (str): Название файла для логов. Если не указан, лог выводится в консоль.
     """
 
-    def decorator(func):
+    def decorator(func) -> None:
         def wrapper(*args, **kwargs):
             try:
                 result = func(*args, **kwargs)

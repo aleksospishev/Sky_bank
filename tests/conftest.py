@@ -3,7 +3,7 @@ import pytest
 
 @pytest.fixture
 def data_transactions() -> list[dict]:
-    """Данные для тестирования функций filter_by_currency и transaction_descriptions"""
+    """Данные для тестирования функций filter_by_currency и transaction_descriptions."""
     return [
         {
             "id": 939719570,

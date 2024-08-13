@@ -11,8 +11,8 @@ utils_logger.addHandler(file_handler)
 utils_logger.setLevel(logging.DEBUG)
 
 
-def inlet_json_file(file_name):
-    """Функция принимает путь до файла и возвращает возвращает список словарей"""
+def inlet_json_file(file_name: str) -> list:
+    """Функция принимает путь до файла и возвращает возвращает список словарей."""
     try:
         utils_logger.info(f"Считываем данные из файла {file_name} ")
         with open(file_name) as file:
@@ -27,15 +27,19 @@ def inlet_json_file(file_name):
     return data_json
 
 
-def amount_transaction_return(transaction: dict) -> float:
-    """ "Принимает транзакцию и возвращает сумму покупки в формате Float если валюта транзакции отлична от RUB
-    происходит конвертация через api по средствам функции 'conversion_currency_amount'"""
+def amount_transaction_return(transaction: dict):
+    """Функция трансформации суммы в валюте.
+
+    Принимает транзакцию и возвращает сумму покупки в формате Float если валюта транзакции отлична от RUB
+    происходит конвертация через api по средствам функции 'conversion_currency_amount'.
+    """
     utils_logger.info(f'Обрабатываем транзакцию id {transaction["id"]}')
     if transaction["operationAmount"]["currency"]["code"] == "RUB":
-        return float(transaction["operationAmount"]["amount"])
+        res = float(transaction["operationAmount"]["amount"])
     else:
         amount_currency = transaction["operationAmount"]["currency"]["code"]
         amount_transaction = transaction["operationAmount"]["amount"]
         conversion_json = conversion_currency_amount(amount_currency, amount_transaction)
         utils_logger.info(f"Обращаемся к API для конвертации {amount_currency} {amount_transaction}")
-        return round(conversion_json["result"], 2)
+        res = round(conversion_json["result"], 2)
+    return res
