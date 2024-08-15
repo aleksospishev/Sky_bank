@@ -15,17 +15,54 @@ def csv_or_xls_read_file(file_name: str) -> List[Dict[str, Any]]:
     """Функция принимает путь до файла .csv или .xlsx(xls) возвращает содержимое списоком словарей."""
 
     try:
+        data = []
         read_file_logger.info(f"Считываем данные из файла {file_name} ")
         if ".csv" in file_name:
             df = pd.read_csv(file_name, delimiter=";")
             df = df.fillna("")
-            data = df.to_dict(
+            data_not_sort = df.to_dict(
                 orient="records",
             )
+            for el in data_not_sort:
+                data.append(
+                    {
+                        "id": str(el["id"]),
+                        "state": el["state"],
+                        "date": el["date"],
+                        "operationAmount": {
+                            "amount": el["amount"],
+                            "currency": {
+                                "name": el["currency_name"],
+                                "code": el["currency_code"],
+                            },
+                        },
+                        "description": el["description"],
+                        "from": el["from"],
+                        "to": el["to"],
+                    }
+                )
         elif ".xls" in file_name:
             df = pd.read_excel(file_name)
             df = df.fillna("")
-            data = df.to_dict(orient="records")
+            data_not_sort = df.to_dict(orient="records")
+            for el in data_not_sort:
+                data.append(
+                    {
+                        "id": str(el["id"]),
+                        "state": el["state"],
+                        "date": el["date"],
+                        "operationAmount": {
+                            "amount": el["amount"],
+                            "currency": {
+                                "name": el["currency_name"],
+                                "code": el["currency_code"],
+                            },
+                        },
+                        "description": el["description"],
+                        "from": el["from"],
+                        "to": el["to"],
+                    }
+                )
         else:
             read_file_logger.warning("Файл имеет разрешение отличное от xls или csv")
             data = []

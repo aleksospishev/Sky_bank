@@ -38,7 +38,7 @@ def amount_transaction_return(transaction: dict):
         res = float(transaction["operationAmount"]["amount"])
     else:
         amount_currency = transaction["operationAmount"]["currency"]["code"]
-        amount_transaction = transaction["operationAmount"]["amount"]
+        amount_transaction = float(transaction["operationAmount"]["amount"])
         conversion_json = conversion_currency_amount(amount_currency, amount_transaction)
         utils_logger.info(f"Обращаемся к API для конвертации {amount_currency} {amount_transaction}")
         res = round(conversion_json["result"], 2)
