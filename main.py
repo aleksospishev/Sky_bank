@@ -29,13 +29,15 @@ answer_files = {
 
 
 def handler_file(file_type: str, file_path) -> None:
+    """Функция выбора какой функцией обрабатывать файл"""
     if file_type == "JSON":
         return inlet_json_file(file_path)
     elif file_type == "CSV" or file_type == "xlsx":
         return csv_or_xls_read_file(file_path)
 
 
-def main() -> None:
+def main():
+    """MAIN функция проекта."""
     answer = input(GREETINGS_TEXT)
     try:
         main_logger.info(f"Пользователь ввел {answer}")
