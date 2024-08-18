@@ -36,22 +36,22 @@ def test_df() -> pd.DataFrame:
     return pd.DataFrame(data_test)
 
 
-@patch('src.read_file.pd.read_csv')
+@patch("src.read_file.pd.read_csv")
 def test_read_file_csv(mock_read, test_df):
     """Тест чтение из файла CSV."""
     mock_read.return_value = test_df
     res = csv_or_xls_read_file("./data_test/test.csv")
-    expected = test_df.to_dict(orient='records')
+    expected = test_df.to_dict(orient="records")
     assert res == expected
     mock_read.assert_called_once_with("./data_test/test.csv", delimiter=";")
 
 
-@patch('src.read_file.pd.read_excel')
+@patch("src.read_file.pd.read_excel")
 def test_read_file_xls(mock_read_xls, test_df):
     """Тест чтение из файла xls."""
     mock_read_xls.return_value = test_df
     res = csv_or_xls_read_file("./data_test/test.xlsx")
-    expected = test_df.to_dict(orient='records')
+    expected = test_df.to_dict(orient="records")
     assert res == expected
     mock_read_xls.assert_called_once_with("./data_test/test.xlsx")
 

@@ -1,6 +1,6 @@
 import pytest
 
-from src.utis import amount_transaction_return, inlet_json_file
+from src.utils import amount_transaction_return, inlet_json_file
 
 
 def test_inlet_json_file() -> None:
